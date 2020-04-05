@@ -1,0 +1,21 @@
+<% include partials/header %>
+
+<div class="home-page">
+
+  <div class="container-button">
+    <a href="/compose" class="compose-button" role="button" aria-disabled="true" style="float: right;">COMPOSE</a>
+  </div>
+
+  <% posts.forEach(function(post){ %>
+  <a href="/posts/+ <%= post.title %>" class="title">
+    <h1><%= post.title %></h1>
+  </a>
+  <p class="content">
+    <%= post.content.slice(0,300)+"..." %>
+    <a href="/posts/+ <%= post.title %>"> Read More</a>
+  </p>
+  <% }) %>
+  
+</div>
+
+<% include partials/footer %>

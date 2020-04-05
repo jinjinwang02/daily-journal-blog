@@ -1,0 +1,132 @@
+.container-fluid {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+/* Nav bar */
+.navbar {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+.navbar-header {
+  font-size: 20px;
+}
+
+a, a:visited, a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar-nav  li a:hover {
+    color: #f7d23b;
+}
+
+.title, h1 {
+
+    font-family:  'Gotu', sans-serif;
+    padding-bottom: 5px;
+}
+
+.content {
+  font-family: 'Roboto Light', sans-serif;
+}
+
+/* Home page */
+.home-page {
+  padding-top: 10px;
+}
+
+.content {
+  font-family: 'Roboto Light', sans-serif;
+}
+
+.container-button {
+color: #f7d23b;
+padding: 10px 0 20px 0;
+}
+
+.compose-button {
+font-size: 12px;
+background-color: white;
+border: 2px solid #f7d23b;
+transition-duration: 0.2s;
+padding: 10px 10px 10px 14px;
+letter-spacing: 5px;
+border-radius: 8px;
+}
+
+.compose-button:hover {
+background-color: #f7d23b;
+color: white;
+}
+
+.content a{
+    color: #f7d23b;
+}
+
+/* Compose page */
+.compose-page {
+  padding-top: 15px;
+}
+
+.publish-button {
+  font-size:12px;
+  color: #f7d23b;
+  background-color: white;
+  border: 2px solid #f7d23b;
+  transition-duration: 0.2s;
+  padding: 10px 10px 10px 14px;
+  letter-spacing: 5px;
+  border-radius: 8px;
+
+}
+.publish-button:hover {
+background-color: #f7d23b;
+color: white;
+}
+
+/* Post page */
+.post-page{
+  padding-top: 15px;
+}
+
+/* About page */
+.about-page{
+  padding-top: 30px;
+  letter-spacing: 3px;
+}
+
+/* Contact page */
+.contact-page{
+  padding-top: 30px;
+  padding-left: 0;
+  letter-spacing: 3px;
+}
+
+.contact-link :hover {
+  color: #f7d23b;
+}
+
+/* Footer */
+.footer-padding {
+	padding-bottom: 50px;
+}
+
+.footer {
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	background-color: #f7d23b;
+}
+
+.footer p {
+	margin-top: 13px;
+	font-size: 12px;
+  color: #fff;
+}
