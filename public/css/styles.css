@@ -39,6 +39,14 @@ a, a:visited, a:hover {
   font-family: 'Roboto Light', sans-serif;
 }
 
+.home-page-post {
+  margin-bottom: 40px;
+}
+
+.home-page p .content {
+  margin-bottom: 40px;
+}
+
 .home-page p a {
     color: #f7d23b;
 }
@@ -66,6 +74,7 @@ border-radius: 8px;
 background-color: #f7d23b;
 color: white;
 }
+
 
 /* Compose page */
 .compose-page {

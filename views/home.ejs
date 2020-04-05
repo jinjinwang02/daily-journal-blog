@@ -11,13 +11,15 @@
     <h1><%= post.title %></h1>
   </a>
 
-  <p class="content">
+  <% if(post.content.length < 300) { %>
+  <p class="home-page-post content"><%= post.content %></p>
+  <% } else {%>
+  <p class="home-page-post content">
     <%= post.content.slice(0,300)+"..." %>
-    <a class = "readmore" href="/posts/+ <%= post.title %>"> Read More</a>
+    <a class="readmore" href="/posts/+ <%= post.title %>"> Read More</a>
   </p>
+  <% }}) %>
 
-
-  <% }) %>
 
 </div>
 
