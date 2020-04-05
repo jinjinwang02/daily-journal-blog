@@ -10,12 +10,15 @@
   <a href="/posts/+ <%= post.title %>" class="title">
     <h1><%= post.title %></h1>
   </a>
+
   <p class="content">
     <%= post.content.slice(0,300)+"..." %>
-    <a href="/posts/+ <%= post.title %>"> Read More</a>
+    <a class = "readmore" href="/posts/+ <%= post.title %>"> Read More</a>
   </p>
+
+
   <% }) %>
-  
+
 </div>
 
 <% include partials/footer %>

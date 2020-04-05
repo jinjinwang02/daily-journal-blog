@@ -22,17 +22,12 @@ a, a:visited, a:hover {
 }
 
 .navbar-nav  li a:hover {
-    color: #f7d23b;
+    color: #f7d23b!important
 }
 
 .title, h1 {
-
     font-family:  'Gotu', sans-serif;
     padding-bottom: 5px;
-}
-
-.content {
-  font-family: 'Roboto Light', sans-serif;
 }
 
 /* Home page */
@@ -42,6 +37,14 @@ a, a:visited, a:hover {
 
 .content {
   font-family: 'Roboto Light', sans-serif;
+}
+
+.home-page p a {
+    color: #f7d23b;
+}
+
+.content a:hover{
+    color: #f7d23b;
 }
 
 .container-button {
@@ -64,13 +67,17 @@ background-color: #f7d23b;
 color: white;
 }
 
-.content a{
-    color: #f7d23b;
-}
-
 /* Compose page */
 .compose-page {
   padding-top: 15px;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 10px!important
 }
 
 .publish-button {
@@ -79,9 +86,10 @@ color: white;
   background-color: white;
   border: 2px solid #f7d23b;
   transition-duration: 0.2s;
-  padding: 10px 10px 10px 14px;
   letter-spacing: 5px;
   border-radius: 8px;
+  padding: 10px 10px 10px 14px;
+  margin-top: 5px;
 
 }
 .publish-button:hover {
@@ -107,7 +115,7 @@ color: white;
   letter-spacing: 3px;
 }
 
-.contact-link :hover {
+.contact-link:hover {
   color: #f7d23b;
 }
 
