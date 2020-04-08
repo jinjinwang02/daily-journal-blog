@@ -11,10 +11,6 @@ A simple blog built using node js. Heavily inspired by https://www.udemy.com/cou
 ```bash
 # install requirements
 npm install
-npm i express
-npm i body-parser
-npm i ejs
-npm i lodash
 ```
 ## Run server
 
