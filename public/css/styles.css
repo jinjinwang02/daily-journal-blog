@@ -47,19 +47,11 @@ a, a:visited, a:hover {
   color: #7a7a7a;
 }
 
-.home-page-post {
+.home-page-post, .home-page p .content {
   margin-bottom: 40px;
 }
 
-.home-page p .content {
-  margin-bottom: 40px;
-}
-
-.home-page p a {
-    color: #f7d23b;
-}
-
-.content a:hover{
+.home-page p a, .content a:hover {
     color: #f7d23b;
 }
 
@@ -83,17 +75,12 @@ background-color: #f7d23b;
 color: white;
 }
 
-
 /* Compose page */
 .compose-page {
   padding-top: 15px;
 }
 
-label {
-  margin-bottom: 10px;
-}
-
-input {
+label, input {
   margin-bottom: 10px!important
 }
 
@@ -120,6 +107,9 @@ color: white;
   padding-bottom: 10px;
 }
 
+.delete {
+  margin-bottom: 80px;
+}
 
 /* About page */
 .about-page{

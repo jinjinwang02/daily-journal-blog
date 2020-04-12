@@ -18,7 +18,14 @@
     <%= post.content.slice(0,300)+"..." %>
     <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
   </p>
+
   <% }}) %>
+
+  <%  if (posts.length === 0){ %>
+      <h1 class="welcome">Welcome to the daily journal!</h1>
+      <p class="content welcome">Click the compose button to start.</p>
+  <%  } %>
+
 
 </div>
 
