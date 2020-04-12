@@ -52,7 +52,7 @@ a, a:visited, a:hover {
 }
 
 .home-page p a, .content a:hover {
-    color: #f7d23b;
+  color: #f7d23b;
 }
 
 .container-button {
@@ -116,17 +116,21 @@ color: white;
 }
 
 /* About page */
-.about-page{
+.about-page {
   padding-top: 30px;
-  letter-spacing: 3px;
+  letter-spacing: 1px;
 }
-
-/* Contact page */
+.about-me {
+  margin-top: 30px;
+}
+.the-abouts{
+  letter-spacing: 3px;
+  font-size: 18px;
+}
+/* 
 .contact-page{
-  padding-top: 30px;
-  padding-left: 0;
   letter-spacing: 3px;
-}
+} */
 
 .contact-link:hover {
   color: #f7d23b;
