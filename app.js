@@ -2,27 +2,75 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const _ = require("lodash");
-
+const mongoose = require('mongoose');
 const app = express();
+
 app.set('view engine', 'ejs');
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(express.static("public"));
+mongoose.connect('mongodb://localhost:27017/blogDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
-//jshint esversion:6
-const day1Content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+const blogPostSchema = {
+  date: Date,
+  title: String,
+  content: String
+};
 
-const posts = [{
-  title: "Day 1",
-  content: day1Content
-}];
+const BlogPost = mongoose.model("BlogPost", blogPostSchema);
+
+// const welcomeSchema = {
+//   title: String,
+//   content: String
+// }
+//
+// const WelcomePost = mongoose.model("WelcomePost", welcomeSchema);
+//
+// const welcome = new WelcomePost({
+//   title: "Welcome to daily journal",
+//   content: "Click the compose button to start your first journal."
+// })
+
 
 app.get("/", function(req, res) {
-  res.render("home", {
-    posts: posts
+    BlogPost.find().collation({locale: "en"}).sort({date: -1}).exec(function(err, posts) {
+      res.render("home", {posts: posts});
+    });
   });
+
+app.get("/compose", function(req, res) {
+  res.render("compose");
+});
+
+app.post("/compose", function(req, res) {
+  const post = new BlogPost({
+    date: Date.now(),
+    title: req.body.postTitle,
+    content: req.body.postBody
+  })
+  post.save(function(err){
+    if(!err){
+      res.redirect("/");
+    }
+  });
+});
+
+app.get("/posts/:postId", function(req, res) {
+
+  const requestedPostId = req.params.postId;
+
+  BlogPost.findOne({_id: requestedPostId}, function(err, post){
+    res.render("post", {
+      thisTitle: post.title,
+      thisContent: post.content
+    })
+  })
+
 });
 
 app.get("/about", function(req, res) {
@@ -31,35 +79,6 @@ app.get("/about", function(req, res) {
 
 app.get("/contact", function(req, res) {
   res.render("contact");
-});
-
-app.get("/compose", function(req, res) {
-  res.render("compose");
-});
-
-app.post("/compose", function(req, res) {
-
-  const blogpost = {
-    title: req.body.postTitle,
-    content: req.body.postBody
-  };
-  posts.push(blogpost);
-  res.redirect("/");
-});
-
-app.get("/posts/:postId", function(req, res) {
-
-  posts.forEach(function(post) {
-
-    const lowerCasePostTitle = _.lowerCase(post.title)
-    const lowerCasePostId = _.lowerCase(req.params.postId)
-
-    if (lowerCasePostId === lowerCasePostTitle) {
-      res.render("post", {
-        thisTitle: post.title,
-        thisContent: post.content
-      })}
-  });
 });
 
 app.listen(3000, function() {

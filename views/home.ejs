@@ -7,7 +7,7 @@
   </div>
 
   <% posts.forEach(function(post){ %>
-  <a href="/posts/+ <%= post.title %>" class="title">
+  <a href="/posts/<%= post._id %>" class="title">
     <h1><%= post.title %></h1>
   </a>
 
@@ -16,10 +16,9 @@
   <% } else {%>
   <p class="home-page-post content">
     <%= post.content.slice(0,300)+"..." %>
-    <a class="readmore" href="/posts/+ <%= post.title %>"> Read More</a>
+    <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
   </p>
   <% }}) %>
-
 
 </div>
 

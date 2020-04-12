@@ -43,6 +43,9 @@ a, a:visited, a:hover {
 .content {
   font-family: 'Roboto Light', sans-serif;
 }
+.welcome{
+  color: #7a7a7a;
+}
 
 .home-page-post {
   margin-bottom: 40px;
