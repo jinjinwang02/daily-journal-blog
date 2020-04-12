@@ -7,6 +7,11 @@ body {
     padding-top: 70px;
     padding-bottom: 70px;
 }
+
+.title, h1 {
+    font-family:  'Gotu', sans-serif;
+    padding-bottom: 5px;
+}
 /* Nav bar */
 .navbar {
     padding-top: 20px;
@@ -28,11 +33,6 @@ a, a:visited, a:hover {
 
 .navbar-nav  li a:hover {
     color: #f7d23b!important
-}
-
-.title, h1 {
-    font-family:  'Gotu', sans-serif;
-    padding-bottom: 5px;
 }
 
 /* Home page */
@@ -117,7 +117,9 @@ color: white;
 /* Post page */
 .post-page{
   padding-top: 15px;
+  padding-bottom: 10px;
 }
+
 
 /* About page */
 .about-page{
@@ -142,7 +144,7 @@ color: white;
 }
 
 .footer {
-	position: absolute;
+	position: fixed;
 	text-align: center;
 	bottom: 0;
 	width: 100%;

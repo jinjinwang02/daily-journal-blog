@@ -5,4 +5,13 @@
   <p class="content"><%= thisContent %></p>
 </div>
 
+
+    <form action="/delete" method="post">
+      <button type="submit" class="publish-button" name="deletedPost" value="<%= post._id %>" onChange="this.form.submit()">DELETE</button>
+    </form>
+
+
+
+
+
 <% include partials/footer %>

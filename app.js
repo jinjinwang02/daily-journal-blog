@@ -67,10 +67,20 @@ app.get("/posts/:postId", function(req, res) {
   BlogPost.findOne({_id: requestedPostId}, function(err, post){
     res.render("post", {
       thisTitle: post.title,
-      thisContent: post.content
+      thisContent: post.content,
+      post: post
     })
   })
 
+});
+
+app.post("/delete", function(req, res){
+  const deletedPost = req.body.deletedPost
+  BlogPost.deleteOne({_id: deletedPost}, function(err){
+    if(!err) {
+      res.redirect("/");
+    }
+    })
 });
 
 app.get("/about", function(req, res) {
