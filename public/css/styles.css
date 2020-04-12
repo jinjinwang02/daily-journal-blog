@@ -10,7 +10,7 @@ body {
 
 .title, h1 {
     font-family:  'Gotu', sans-serif;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 /* Nav bar */
 .navbar {
@@ -102,9 +102,13 @@ color: white;
 }
 
 /* Post page */
-.post-page{
+.post-page {
   padding-top: 15px;
   padding-bottom: 10px;
+}
+.time-stamp {
+  padding-top: 15px;
+  color: #7a7a7a;
 }
 
 .delete {

@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require('mongoose');
 const app = express();
+const date = require(__dirname + "/date.js");
 
 app.set('view engine', 'ejs');
 
@@ -17,25 +18,12 @@ mongoose.connect('mongodb://localhost:27017/blogDB', {
 });
 
 const blogPostSchema = {
-  date: Date,
+  date: String,
   title: String,
   content: String
 };
 
 const BlogPost = mongoose.model("BlogPost", blogPostSchema);
-
-// const welcomeSchema = {
-//   title: String,
-//   content: String
-// }
-//
-// const WelcomePost = mongoose.model("WelcomePost", welcomeSchema);
-//
-// const welcome = new WelcomePost({
-//   title: "Welcome to daily journal",
-//   content: "Click the compose button to start your first journal."
-// })
-
 
 app.get("/", function(req, res) {
     BlogPost.find().collation({locale: "en"}).sort({date: -1}).exec(function(err, posts) {
@@ -48,8 +36,10 @@ app.get("/compose", function(req, res) {
 });
 
 app.post("/compose", function(req, res) {
+  const time = date.getTime();
+
   const post = new BlogPost({
-    date: Date.now(),
+    date: time,
     title: req.body.postTitle,
     content: req.body.postBody
   })
