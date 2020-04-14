@@ -1,4 +1,5 @@
 body {
+  padding-top: 90px;
   position: relative;
   min-height: 100%;
   min-height: 100vh;
@@ -9,7 +10,8 @@ body {
 }
 
 .title, h1 {
-    font-family:  'Gotu', sans-serif;
+    font-family:  'Prata', serif;
+    font-size: 32px;
     padding-bottom: 10px;
 }
 /* Nav bar */
@@ -106,6 +108,11 @@ color: white;
   padding-top: 15px;
   padding-bottom: 10px;
 }
+
+.post-page p {
+  white-space: pre-wrap;
+}
+
 .time-stamp {
   padding-top: 15px;
   color: #7a7a7a;
@@ -127,10 +134,6 @@ color: white;
   letter-spacing: 3px;
   font-size: 18px;
 }
-/* 
-.contact-page{
-  letter-spacing: 3px;
-} */
 
 .contact-link:hover {
   color: #f7d23b;
@@ -142,7 +145,7 @@ color: white;
 }
 
 .footer {
-	position: fixed;
+	position: absolute;
 	text-align: center;
 	bottom: 0;
 	width: 100%;
