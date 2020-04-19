@@ -86,6 +86,10 @@ label, input {
   margin-bottom: 10px!important
 }
 
+textarea {
+  resize: none;
+}
+
 .publish-button {
   font-size:12px;
   color: #f7d23b;
@@ -150,7 +154,7 @@ color: white;
 	bottom: 0;
 	width: 100%;
 	height: 40px;
-	background-color: #f7d23b;
+	background-color: #cfe7f7;
 }
 
 .footer p {
