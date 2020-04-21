@@ -1,10 +1,10 @@
 //jshint esversion:6
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
 const mongoose = require('mongoose');
 const app = express();
 const date = require(__dirname + "/date.js");
+require("dotenv").config();
 
 app.set('view engine', 'ejs');
 
@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://admin-jinjin:ONLy0202@cluster0-yo0nm.mongodb.net/blogDB', {
+const uri = process.env.ATLAS_URI;
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
