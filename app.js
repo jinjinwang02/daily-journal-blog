@@ -41,7 +41,8 @@ const BlogPost = mongoose.model("BlogPost", blogPostSchema);
 
 const userSchema = mongoose.Schema({
   username: String,
-  password: String
+  password: String,
+  authorName: Object
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -70,7 +71,7 @@ passport.use(new GoogleStrategy({
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile);
 
-    User.findOrCreate({ username: profile.id }, function (err, user) {
+    User.findOrCreate({ username: profile.id, authorName: profile.name }, function (err, user) {
       return cb(err, user);
     });
   }
