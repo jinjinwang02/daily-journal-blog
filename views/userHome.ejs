@@ -10,8 +10,9 @@
   </a>
 
   <% if(post.content.length < 300) { %>
-  <p class="home-page-post content"><%= post.content %></p>
-  <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
+  <p class="home-page-post content"><%= post.content %>
+    <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
+  </p>
   <% } else {%>
   <p class="home-page-post content">
     <%= post.content.slice(0,300)+"..." %>
