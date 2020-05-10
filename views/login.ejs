@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<form class="auth-form" action="/login" method="POST" autocomplete="off">
+    <div class="auth">
+        <h1>Log in to your account</h1>
+        <div class="auth-button">
+            <a href="/auth/google" role="button">
+                <i class="fab fa-google"></i>
+                &nbsp Log in with Google
+            </a>
+        </div>
+        <div class="or">
+            <span>or</span>
+        </div>
+        <input type="email" name="username" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <button type="submit" class="auth-button">Login</button>
+    <p>Not a user? <a style="text-decoration: underline;" href="/register">Sign up</a></p>
+</form>
+
+<% include partials/footer %>

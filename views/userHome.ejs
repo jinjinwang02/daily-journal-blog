@@ -1,0 +1,30 @@
+<% include partials/userHeader %>
+
+<div class="home-page">
+
+  <a href="/compose" class="compose-button" role="button" aria-disabled="true" style="float: right;">COMPOSE</a>
+
+  <% posts.forEach(function(post){ %>
+  <a href="/posts/<%= post._id %>" class="title">
+    <h1><%= post.title %></h1>
+  </a>
+
+  <% if(post.content.length < 300) { %>
+  <p class="home-page-post content"><%= post.content %></p>
+  <% } else {%>
+  <p class="home-page-post content">
+    <%= post.content.slice(0,300)+"..." %>
+    <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
+  </p>
+
+  <% }}) %>
+
+  <%  if (posts.length === 0){ %>
+  <h1 class="welcome">Welcome to the daily journal!</h1>
+  <p class="content welcome">Click the compose button to start.</p>
+  <%  } %>
+
+
+</div>
+
+<% include partials/footer %>

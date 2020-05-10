@@ -1,32 +1,7 @@
 <% include partials/header %>
 
-<div class="home-page">
+<h1 class="home">Welcome to Daily journal!</h1>
+<a href="/register" class="home-button">SIGN UP / LOGIN</a>
 
-  <div class="container-button">
-    <a href="/compose" class="compose-button" role="button" aria-disabled="true" style="float: right;">COMPOSE</a>
-  </div>
-
-  <% posts.forEach(function(post){ %>
-  <a href="/posts/<%= post._id %>" class="title">
-    <h1><%= post.title %></h1>
-  </a>
-
-  <% if(post.content.length < 300) { %>
-  <p class="home-page-post content"><%= post.content %></p>
-  <% } else {%>
-  <p class="home-page-post content">
-    <%= post.content.slice(0,300)+"..." %>
-    <a class="readmore" href="/posts/<%= post._id %>"> Read More</a>
-  </p>
-
-  <% }}) %>
-
-  <%  if (posts.length === 0){ %>
-      <h1 class="welcome">Welcome to the daily journal!</h1>
-      <p class="content welcome">Click the compose button to start.</p>
-  <%  } %>
-
-
-</div>
 
 <% include partials/footer %>
