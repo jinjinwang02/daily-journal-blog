@@ -40,9 +40,8 @@ const blogPostSchema = {
 const BlogPost = mongoose.model("BlogPost", blogPostSchema);
 
 const userSchema = mongoose.Schema({
-  email: String,
-  password: String,
-  userId: String
+  username: String,
+  password: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -65,12 +64,13 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "https://protected-hamlet-37960.herokuapp.com/auth/google/dailyjournal"
+  callbackURL: "http://localhost:3000/auth/google/dailyjournal",
+  userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
   function (accessToken, refreshToken, profile, cb) {
-    console.log(profile);
+    // console.log(profile);
 
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+    User.findOrCreate({ username: profile.id }, function (err, user) {
       return cb(err, user);
     });
   }
@@ -157,11 +157,10 @@ app.post("/register", function (req, res) {
   User.register({ username: req.body.username }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
-      ///add text: Register failed. Please try again
-      res.redirect("/register", { err: error });
+      res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function () {
-        res.redirect("/userhome")
+        res.redirect("/userhome");
       })
     }
   })
@@ -170,7 +169,7 @@ app.post("/register", function (req, res) {
 app.post("/login", function (req, res) {
   const user = new User({
     username: req.body.username,
-    password: req.body.password
+    password: req.body.password,
   });
   req.login(user, function (err) {
     if (err) {
