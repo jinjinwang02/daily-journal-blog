@@ -65,7 +65,7 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/dailyjournal",
+  callbackURL: "https://protected-hamlet-37960.herokuapp.com//auth/google/dailyjournal",
   userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
   function (accessToken, refreshToken, profile, cb) {
@@ -110,7 +110,6 @@ app.get("/logout", function (req, res) {
 
 app.get("/userhome", function (req, res) {
   if (req.isAuthenticated()) {
-
     User.findById(req.user.id, function (err, foundUser) {
       if (err) {
         console.log(err);
@@ -125,18 +124,42 @@ app.get("/userhome", function (req, res) {
   } else {
     res.redirect("/")
   }
-
 });
 
 app.get("/compose", function (req, res) {
-  res.render("compose");
+  if (req.isAuthenticated()) {
+    res.render("compose");
+  } else {
+    res.redirect("/")
+  }
+});
+
+app.get("/posts/:postId", function (req, res) {
+  const requestedPostId = req.params.postId;
+
+  if (req.isAuthenticated()) {
+    BlogPost.findOne({ _id: requestedPostId }, function (err, post) {
+      res.render("post", {
+        thisTitle: post.title,
+        thisContent: post.content,
+        post: post
+      })
+    })
+  } else {
+    res.redirect("/")
+  }
+});
+
+app.get("/about", function (req, res) {
+  res.render("about");
 });
 
 app.post("/register", function (req, res) {
   User.register({ username: req.body.username }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
-      res.redirect("/register");
+      ///add text: Register failed. Please try again
+      res.redirect("/register", { err: error });
     } else {
       passport.authenticate("local")(req, res, function () {
         res.redirect("/userhome")
@@ -186,20 +209,6 @@ app.post("/compose", function (req, res) {
   })
 });
 
-app.get("/posts/:postId", function (req, res) {
-
-  const requestedPostId = req.params.postId;
-
-  BlogPost.findOne({ _id: requestedPostId }, function (err, post) {
-    res.render("post", {
-      thisTitle: post.title,
-      thisContent: post.content,
-      post: post
-    })
-  })
-
-});
-
 app.post("/delete", function (req, res) {
   const deletedPost = req.body.deletedPost
   BlogPost.deleteOne({ _id: deletedPost }, function (err) {
@@ -207,10 +216,6 @@ app.post("/delete", function (req, res) {
       res.redirect("/");
     }
   })
-});
-
-app.get("/about", function (req, res) {
-  res.render("about");
 });
 
 let port = process.env.PORT;
