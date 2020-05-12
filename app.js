@@ -81,7 +81,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/dailyjournal",
+      callbackURL: "https://protected-hamlet-37960.herokuapp.com/auth/google/dailyjournal",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -97,11 +97,14 @@ passport.use(
   )
 );
 
+let navArr = [];
+
 app.get("/", function (req, res) {
   if (req.isAuthenticated()) {
+    navArr.push({ item: "LOG OUT" });
     res.redirect("/userhome");
   } else {
-    res.render("home");
+    res.render("welcome", { navArr });
   }
 });
 
@@ -119,15 +122,16 @@ app.get(
 );
 
 app.get("/register", function (req, res) {
-  res.render("register");
+  res.render("register", { navArr });
 });
 
 app.get("/login", function (req, res) {
-  res.render("login");
+  res.render("login", { navArr });
 });
 
 app.get("/logout", function (req, res) {
   req.logout();
+  navArr = [];
   res.redirect("/");
 });
 
@@ -138,11 +142,12 @@ app.get("/userhome", function (req, res) {
         console.log(err);
       } else {
         if (foundUser) {
+          navArr.push({ item: "LOG OUT" });
           BlogPost.find({ userId: foundUser._id })
             .collation({ locale: "en" })
             .sort({ date: -1 })
             .exec(function (err, posts) {
-              res.render("userHome", { posts: posts });
+              res.render("userHome", { posts: posts, navArr });
             });
         }
       }
@@ -154,7 +159,8 @@ app.get("/userhome", function (req, res) {
 
 app.get("/compose", function (req, res) {
   if (req.isAuthenticated()) {
-    res.render("compose");
+    navArr.push({ item: "LOG OUT" });
+    res.render("compose", { navArr });
   } else {
     res.redirect("/");
   }
@@ -164,11 +170,13 @@ app.get("/posts/:postId", function (req, res) {
   const requestedPostId = req.params.postId;
 
   if (req.isAuthenticated()) {
+    navArr.push({ item: "LOG OUT" });
     BlogPost.findOne({ _id: requestedPostId }, function (err, post) {
       res.render("post", {
         thisTitle: post.title,
         thisContent: post.content,
-        post: post,
+        post,
+        navArr,
       });
     });
   } else {
@@ -177,7 +185,10 @@ app.get("/posts/:postId", function (req, res) {
 });
 
 app.get("/about", function (req, res) {
-  res.render("about");
+  if (req.isAuthenticated()) {
+    navArr.push({ item: "LOG OUT" });
+  }
+  res.render("about", { navArr })
 });
 
 app.post("/register", function (req, res) {
