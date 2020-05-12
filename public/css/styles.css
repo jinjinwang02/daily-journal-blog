@@ -12,21 +12,8 @@ body {
 .title,
 h1 {
   font-family: "Prata", serif;
-  font-size: 32px;
+  font-size: 30px;
   padding-bottom: 10px;
-}
-/* Nav bar */
-.navbar {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  border: 0;
-  border-radius: 0;
-  margin-bottom: 0;
-  font-size: 12px;
-  letter-spacing: 5px;
-}
-.navbar-header {
-  font-size: 20px;
 }
 
 a,
@@ -67,6 +54,20 @@ a:hover {
   color: white !important
 }
 
+/* Nav bar */
+.navbar {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+.navbar-header {
+  font-size: 20px;
+}
+
 /* Home page */
 .home {
   top: 35%;
@@ -94,6 +95,15 @@ a:hover {
 .auth-form p {
   margin: 20px 0px;
   color: #7a7a7a;
+}
+
+.alert-button {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
 }
 
 .auth input {
