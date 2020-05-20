@@ -154,7 +154,7 @@ app.get("/userhome", function (req, res) {
             .collation({ locale: "en" })
             .sort({ date: -1 })
             .exec(function (err, posts) {
-              res.render("userHome", { posts: posts, navArr });
+              res.render("userHome", { posts, navArr });
             });
         }
       }
@@ -205,7 +205,7 @@ app.post("/register", function (req, res) {
   }
 
   if (errors.length > 0) {
-    res.render("register", { errors });
+    res.render("register", { errors, navArr });
   } else {
     User.register({ username: req.body.username }, req.body.password, function (
       err,
@@ -213,7 +213,7 @@ app.post("/register", function (req, res) {
     ) {
       if (err) {
         errors.push({ msg: err.message });
-        res.render("register", { errors });
+        res.render("register", { errors, navArr });
       } else {
         passport.authenticate("local")(req, res, function () {
           res.redirect("/userhome");
@@ -236,10 +236,10 @@ app.post("/login", function (req, response) {
       User.findOne({ username: req.body.username }, function (err, founduser) {
         if (!founduser) {
           errors.push({ msg: "This email is not registered" });
-          response.render("login", { errors });
+          response.render("login", { errors, navArr });
         } else {
           errors.push({ msg: "Incorrect password" });
-          response.render("login", { errors });
+          response.render("login", { errors, navArr });
         }
       });
     } else {
