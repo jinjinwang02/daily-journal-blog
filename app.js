@@ -45,17 +45,20 @@ const BlogPost = mongoose.model("BlogPost", blogPostSchema);
 
 const userSchema = mongoose.Schema({
   username: {
-    type: String
+    type: String,
+  },
+  userEmail: {
+    type: String,
   },
   password: {
-    type: String
+    type: String,
   },
   date: {
     type: Date,
     default: Date.now,
   },
   authorName: {
-    type: Object
+    type: Object,
   },
 });
 
@@ -81,14 +84,19 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "https://protected-hamlet-37960.herokuapp.com/auth/google/dailyjournal",
+      callbackURL:
+        "https://protected-hamlet-37960.herokuapp.com/auth/google/dailyjournal",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
       // console.log(profile);
 
       User.findOrCreate(
-        { username: profile.id, authorName: profile.name },
+        {
+          username: profile.id,
+          userEmail: profile.emails[0].value,
+          authorName: profile.name,
+        },
         function (err, user) {
           return cb(err, user);
         }
@@ -188,7 +196,7 @@ app.get("/about", function (req, res) {
   if (req.isAuthenticated()) {
     navArr.push({ item: "LOG OUT" });
   }
-  res.render("about", { navArr })
+  res.render("about", { navArr });
 });
 
 app.post("/register", function (req, res) {
@@ -198,11 +206,14 @@ app.post("/register", function (req, res) {
   }
 
   if (errors.length > 0) {
-    res.render('register', { errors });
+    res.render("register", { errors });
   } else {
-    User.register({ username: req.body.username }, req.body.password, function (err, user) {
+    User.register({ username: req.body.username }, req.body.password, function (
+      err,
+      user
+    ) {
       if (err) {
-        errors.push({ msg: err.message })
+        errors.push({ msg: err.message });
         res.render("register", { errors });
       } else {
         passport.authenticate("local")(req, res, function () {
@@ -231,7 +242,7 @@ app.post("/login", function (req, response) {
           errors.push({ msg: "Incorrect password" });
           response.render("login", { errors });
         }
-      })
+      });
     } else {
       passport.authenticate("local")(req, res, function () {
         res.redirect("/userhome");
