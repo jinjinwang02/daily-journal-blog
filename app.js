@@ -50,6 +50,9 @@ const userSchema = mongoose.Schema({
   userEmail: {
     type: String,
   },
+  googleId: {
+    type: String,
+  },
   password: {
     type: String,
   },
@@ -93,8 +96,8 @@ passport.use(
 
       User.findOrCreate(
         {
-          username: profile.id,
-          userEmail: profile.emails[0].value,
+          googleId: profile.id,
+          username: profile.emails[0].value,
           authorName: profile.name,
         },
         function (err, user) {
