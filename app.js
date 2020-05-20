@@ -224,7 +224,7 @@ app.post("/register", function (req, res) {
   }
 });
 
-app.post("/login", function (req, response) {
+app.post("/login", function (req, res) {
   let errors = [];
 
   const user = new User({
@@ -234,15 +234,17 @@ app.post("/login", function (req, response) {
 
   req.login(user, function (err) {
     if (err) {
-      User.findOne({ username: req.body.username }, function (err, founduser) {
-        if (!founduser) {
-          errors.push({ msg: "This email is not registered" });
-          response.render("login", { errors, navArr });
-        } else {
-          errors.push({ msg: "Incorrect password" });
-          response.render("login", { errors, navArr });
-        }
-      });
+      console.log(err);
+      // User.findOne({ username: req.body.username }, function (err, founduser) {
+      //   if (!founduser) {
+      //     errors.push({ msg: "This email is not registered" });
+      //     res.render("login", { errors, navArr });
+      //   }
+      //   // else {
+      //   //   errors.push({ msg: "Incorrect password" });
+      //   //   response.render("login", { errors, navArr });
+      //   // }
+      // })
     } else {
       passport.authenticate("local")(req, res, function () {
         res.redirect("/userhome");
