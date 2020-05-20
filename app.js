@@ -84,7 +84,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/dailyjournal",
+      callbackURL:
+        "https://protected-hamlet-37960.herokuapp.com/auth/google/dailyjournal",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
