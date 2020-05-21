@@ -44,6 +44,7 @@ a:hover {
   padding: 10px 10px 10px 14px;
   letter-spacing: 5px;
   border-radius: 8px;
+  outline: none;
 }
 
 .home-button:hover,
@@ -122,7 +123,6 @@ input:focus::placeholder {
 
 .auth-button {
   appearance: none;
-  outline: 0;
   border: 0;
   padding: 10px 15px;
   color: white;
