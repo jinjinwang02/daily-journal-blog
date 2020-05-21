@@ -208,10 +208,7 @@ app.post("/register", function (req, res) {
   if (errors.length > 0) {
     res.render("register", { errors, navArr });
   } else {
-    User.register({ username: req.body.username }, req.body.password, function (
-      err,
-      user
-    ) {
+    User.register({ username: req.body.username }, req.body.password, function (err, user) {
       if (err) {
         errors.push({ msg: err.message });
         res.render("register", { errors, navArr });
@@ -235,18 +232,8 @@ app.post("/login", function (req, res) {
   req.login(user, function (err) {
     if (err) {
       console.log(err);
-      // User.findOne({ username: req.body.username }, function (err, founduser) {
-      //   if (!founduser) {
-      //     errors.push({ msg: "This email is not registered" });
-      //     res.render("login", { errors, navArr });
-      //   }
-      //   // else {
-      //   //   errors.push({ msg: "Incorrect password" });
-      //   //   response.render("login", { errors, navArr });
-      //   // }
-      // })
     } else {
-      passport.authenticate("local")(req, res, function () {
+      passport.authenticate("local", { failureRedirect: '/login' })(req, res, function () {
         res.redirect("/userhome");
       });
     }
