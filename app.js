@@ -26,7 +26,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -229,16 +228,26 @@ app.post("/login", function (req, res) {
     password: req.body.password,
   });
 
-  req.login(user, function (err) {
+  User.findOne({ username: req.body.username }, function (err, user) {
     if (err) {
       console.log(err);
+    } if (!user) {
+      errors.push({ msg: "This email has not been registered" });
+      res.render("login", { errors, navArr });
     } else {
-      passport.authenticate("local", { failureRedirect: '/login' })(req, res, function () {
-        res.redirect("/userhome");
+      req.login(user, function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          passport.authenticate("local", { failureRedirect: '/login' })(req, res, function () {
+            res.redirect("/userhome");
+          });
+        }
       });
     }
-  });
-});
+  })
+}
+);
 
 app.post("/compose", function (req, res) {
   const time = date.getTime();
