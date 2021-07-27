@@ -11,7 +11,7 @@ body {
 
 .title,
 h1 {
-  font-family: "Prata", serif;
+  font-family: 'Prata', serif;
   font-size: 30px;
   padding-bottom: 10px;
 }
@@ -28,7 +28,7 @@ a:hover {
 .home-page p a,
 .content a:hover,
 .contact-link:hover,
-.navbar-nav li a:hover{
+.navbar-nav li a:hover {
   color: #f7d23b !important;
 }
 
@@ -50,9 +50,9 @@ a:hover {
 .home-button:hover,
 .compose-button:hover,
 .publish-button:hover,
-.delete-button:hover{
+.delete-button:hover {
   background-color: #f7d23b;
-  color: white !important
+  color: white !important;
 }
 
 /* Nav bar */
@@ -139,14 +139,14 @@ input:focus::placeholder {
 }
 
 .or span {
-    color: #7a7a7a;
-    background: white;
-    padding: 0px 10px;
+  color: #7a7a7a;
+  background: white;
+  padding: 0px 10px;
 }
 
-.or::before{
+.or::before {
   display: inline-block;
-  content: "";
+  content: '';
   position: absolute;
   height: 0px;
   top: 50%;
@@ -165,7 +165,7 @@ input:focus::placeholder {
 }
 
 .content {
-  font-family: "Roboto Light", sans-serif;
+  font-family: 'Roboto Light', sans-serif;
 }
 
 .welcome {
